@@ -7,6 +7,7 @@ import { VideoCard } from "@/components/site/VideoCard";
 import { supabase } from "@/integrations/supabase/client";
 import { youtubeEmbedUrl } from "@/lib/youtube";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { fakeVideos } from "@/lib/fakeData";
 
 export default function VideoDetail() {
   const { id } = useParams<{ id: string }>();
@@ -14,9 +15,14 @@ export default function VideoDetail() {
   const { data: video, isLoading } = useQuery({
     queryKey: ["video", id],
     queryFn: async () => {
+      const v = fakeVideos.find(v => v.id === id);
+      if (!v) throw new Error("Video not found");
+      return v;
+      /*
       const { data, error } = await supabase.from("videos").select("*").eq("id", id!).maybeSingle();
       if (error) throw error;
       return data;
+      */
     },
     enabled: !!id,
   });
@@ -27,6 +33,8 @@ export default function VideoDetail() {
     queryKey: ["videos", "related", video?.category, id],
     enabled: !!video?.category,
     queryFn: async () => {
+      return fakeVideos.filter(v => v.category === video!.category && v.id !== id).slice(0, 4);
+      /*
       const { data } = await supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
@@ -34,6 +42,7 @@ export default function VideoDetail() {
         .neq("id", id!)
         .limit(4);
       return data ?? [];
+      */
     },
   });
 

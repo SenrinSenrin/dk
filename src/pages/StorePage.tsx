@@ -4,6 +4,7 @@ import { ExternalLink, ShoppingBag } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { fakeProducts } from "@/lib/fakeData";
 
 export default function StorePage() {
   useDocumentTitle("Dimension Store");
@@ -11,11 +12,14 @@ export default function StorePage() {
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
+      return fakeProducts;
+      /*
       const { data } = await supabase
         .from("products")
         .select("*").eq("is_active", true)
         .order("created_at", { ascending: false });
       return data ?? [];
+      */
     },
   });
 

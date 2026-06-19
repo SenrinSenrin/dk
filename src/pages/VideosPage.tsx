@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { fakeVideos } from "@/lib/fakeData";
 
 export default function VideosPage() {
   useDocumentTitle("Videos");
@@ -23,6 +24,11 @@ export default function VideosPage() {
   const { data: videos } = useQuery({
     queryKey: ["videos", category ?? null, qParam ?? null],
     queryFn: async () => {
+      let data = fakeVideos;
+      if (category) data = data.filter(v => v.category === category);
+      if (qParam) data = data.filter(v => v.title.toLowerCase().includes(qParam.toLowerCase()));
+      return data;
+      /*
       let query = supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
@@ -31,16 +37,22 @@ export default function VideosPage() {
       if (qParam) query = query.ilike("title", `%${qParam}%`);
       const { data } = await query;
       return data ?? [];
+      */
     },
   });
 
   const { data: cats } = useQuery({
     queryKey: ["videos", "categories"],
     queryFn: async () => {
+      const set = new Set<string>();
+      fakeVideos.forEach((v) => v.category && set.add(v.category));
+      return Array.from(set);
+      /*
       const { data } = await supabase.from("videos").select("category");
       const set = new Set<string>();
       (data ?? []).forEach((v) => v.category && set.add(v.category));
       return Array.from(set);
+      */
     },
   });
 
