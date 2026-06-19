@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@/hooks/useData";
 import { motion } from "framer-motion";
 import { ExternalLink, ShoppingBag } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";

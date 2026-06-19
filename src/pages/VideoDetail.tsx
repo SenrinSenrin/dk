@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@/hooks/useData";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Calendar } from "lucide-react";
 

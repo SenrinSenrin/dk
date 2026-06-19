@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@/hooks/useData";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Cpu, Atom, Rocket, Brain, Mail } from "lucide-react";

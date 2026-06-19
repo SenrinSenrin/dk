@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@/hooks/useData";
 import { Link, useSearch } from "wouter";
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
