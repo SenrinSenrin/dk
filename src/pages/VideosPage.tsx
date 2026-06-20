@@ -1,7 +1,6 @@
 import { useQuery } from "@/hooks/useData";
 import { Link, useSearch } from "wouter";
 import { useState, useMemo } from "react";
-import { Search } from "lucide-react";
 
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { VideoCard } from "@/components/site/VideoCard";
@@ -10,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { fakeVideos } from "@/lib/fakeData";
+import { IconSearch } from "@tabler/icons-react";
 
 export default function VideosPage() {
   useDocumentTitle("Videos");
@@ -80,7 +80,7 @@ export default function VideosPage() {
           className="mt-8 flex flex-col gap-3 sm:flex-row"
         >
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <IconSearch className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={q} onChange={(e) => setQ(e.target.value)}
               placeholder="Search videos…"

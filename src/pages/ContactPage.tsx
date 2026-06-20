@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Input } from "@/components/ui/input";
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { IconSend2 } from "@tabler/icons-react";
 
 export default function ContactPage() {
   useDocumentTitle("Contact");
@@ -57,7 +57,7 @@ export default function ContactPage() {
           </div>
           <Button type="submit" size="lg" disabled={sending}
                   className="bg-linear-to-r from-primary to-secondary text-primary-foreground glow-cyan">
-            {sending ? "Sending…" : <>Send message <Send className="ml-2 h-4 w-4" /></>}
+            {sending ? "Sending…" : <>Send message <IconSend2 className="ml-2 h-4 w-4" /></>}
           </Button>
         </motion.form>
       </section>

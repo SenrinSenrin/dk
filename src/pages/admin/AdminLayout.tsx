@@ -1,6 +1,5 @@
 import { Link, useLocation, Route, Switch } from "wouter";
 import { useEffect } from "react";
-import { LayoutDashboard, Video, FileText, ShoppingBag, MessageSquare, LogOut, Sparkles } from "lucide-react";
 
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,13 +12,14 @@ import AdminVideos from "./AdminVideos";
 import AdminArticles from "./AdminArticles";
 import AdminProducts from "./AdminProducts";
 import AdminMessages from "./AdminMessages";
+import { IconFileText, IconLayoutDashboard, IconLogout, IconMessage, IconPlayerPlay, IconShoppingCart, IconSparkle2 } from "@tabler/icons-react";
 
 const items = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { to: "/admin/videos", label: "Videos", icon: Video },
-  { to: "/admin/articles", label: "Articles", icon: FileText },
-  { to: "/admin/products", label: "Store", icon: ShoppingBag },
-  { to: "/admin/messages", label: "Messages", icon: MessageSquare },
+  { to: "/admin", label: "Dashboard", icon: IconLayoutDashboard, exact: true },
+  { to: "/admin/videos", label: "Videos", icon: IconPlayerPlay },
+  { to: "/admin/articles", label: "Articles", icon: IconFileText },
+  { to: "/admin/products", label: "Store", icon: IconShoppingCart },
+  { to: "/admin/messages", label: "Messages", icon: IconMessage },
 ] as const;
 
 export default function AdminLayout() {
@@ -57,7 +57,7 @@ export default function AdminLayout() {
       <aside className="hidden border-r border-white/5 bg-black/30 backdrop-blur md:flex md:flex-col">
         <Link href="/" className="flex items-center gap-2 px-6 py-5">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-linear-to-br from-primary to-secondary">
-            <Sparkles className="h-4 w-4 text-primary-foreground" />
+            <IconSparkle2 className="h-4 w-4 text-primary-foreground" />
           </span>
           <span className="font-display text-base font-bold">Admin</span>
         </Link>
@@ -78,14 +78,14 @@ export default function AdminLayout() {
         </nav>
         <div className="border-t border-white/5 p-3">
           <Button variant="ghost" onClick={() => supabase.auth.signOut().then(() => setLocation("/"))} className="w-full justify-start text-muted-foreground hover:text-foreground">
-            <LogOut className="mr-2 h-4 w-4" /> Sign out
+            <IconLogout className="mr-2 h-4 w-4" /> Sign out
           </Button>
         </div>
       </aside>
       <div className="flex flex-col">
         <header className="flex items-center justify-between border-b border-white/5 bg-black/20 px-6 py-4 md:hidden">
           <Link href="/" className="font-display font-bold">DK Admin</Link>
-          <Button size="sm" variant="ghost" onClick={() => supabase.auth.signOut()}><LogOut className="h-4 w-4" /></Button>
+          <Button size="sm" variant="ghost" onClick={() => supabase.auth.signOut()}><IconLogout className="h-4 w-4" /></Button>
         </header>
         <div className="md:hidden flex gap-2 overflow-x-auto border-b border-white/5 bg-black/20 px-4 py-3">
           {items.map((it) => {

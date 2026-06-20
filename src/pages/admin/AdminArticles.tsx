@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@/hooks/useData";
 import { useState } from "react";
-import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
+import { IconPlus, IconTrash } from "@tabler/icons-react";
 
 function slugify(s: string) {
   return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -45,7 +45,7 @@ export default function AdminArticles() {
                 <td className="hidden p-4 font-mono text-xs text-muted-foreground md:table-cell">{a.slug}</td>
                 <td className="hidden p-4 md:table-cell">{a.is_published ? <span className="rounded bg-primary/15 px-2 py-0.5 text-xs text-primary">Live</span> : <span className="text-muted-foreground">Draft</span>}</td>
                 <td className="p-4 text-right">
-                  <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(a.id); }}><Trash2 className="h-4 w-4 text-destructive" /></Button>
+                  <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(a.id); }}><IconTrash className="h-4 w-4 text-destructive" /></Button>
                 </td>
               </tr>
             ))}
@@ -76,7 +76,7 @@ function AddArticle() {
   });
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add article</Button></DialogTrigger>
+      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><IconPlus className="mr-2 h-4 w-4" />Add article</Button></DialogTrigger>
       <DialogContent className="max-w-lg bg-popover/95 backdrop-blur-xl">
         <DialogHeader><DialogTitle>New article</DialogTitle></DialogHeader>
         <div className="grid gap-4">

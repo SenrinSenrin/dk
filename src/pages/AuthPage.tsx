@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 import { Input } from "@/components/ui/input";
@@ -10,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { IconSparkle2 } from "@tabler/icons-react";
 
 export default function AuthPage() {
   useDocumentTitle("Sign in");
@@ -58,7 +58,7 @@ export default function AuthPage() {
       >
         <Link href="/" className="mb-8 flex items-center justify-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary">
-            <Sparkles className="h-4 w-4 text-primary-foreground" />
+            <IconSparkle2 className="h-4 w-4 text-primary-foreground" />
           </span>
           <span className="font-display text-lg font-bold">Dimension Knowledge</span>
         </Link>

@@ -1,9 +1,9 @@
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { IconMenu2, IconSparkle2, IconX } from "@tabler/icons-react";
 
 const links = [
   { to: "/", label: "Home" },
@@ -29,7 +29,7 @@ export function Navbar() {
         <nav className="glass-strong flex items-center justify-between rounded-2xl px-4 py-5 sm:px-6">
           <Link href="/" className="group flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary shadow-[0_0_24px_oklch(0.78_0.18_210/0.5)] transition-transform group-hover:scale-105">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <IconSparkle2 className="h-4 w-4 text-primary-foreground" />
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
               Dimension <span className="text-gradient">Knowledge</span>
@@ -72,7 +72,7 @@ export function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? <IconX className="h-4 w-4" /> : <IconMenu2 className="h-4 w-4" />}
           </button>
         </nav>
 

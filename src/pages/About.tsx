@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { Telescope, Layers, Zap, Globe } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { IconBolt, IconGlobe, IconLayersIntersect, IconTelescope } from "@tabler/icons-react";
 
 const pillars = [
-  { icon: Telescope, title: "Depth over noise", text: "We pick fewer subjects, but dig deeper. Every video is research-first." },
-  { icon: Layers, title: "Visual-first storytelling", text: "Motion, sound, and design carry the idea as much as the script." },
-  { icon: Zap, title: "Built for curiosity", text: "If a 14-year-old future engineer can't follow it, we re-write it." },
-  { icon: Globe, title: "Global lens", text: "Ideas don't have borders — neither does our reporting." },
+  { icon: IconTelescope, title: "Depth over noise", text: "We pick fewer subjects, but dig deeper. Every video is research-first." },
+  { icon: IconLayersIntersect, title: "Visual-first storytelling", text: "Motion, sound, and design carry the idea as much as the script." },
+  { icon: IconBolt, title: "Built for curiosity", text: "If a 14-year-old future engineer can't follow it, we re-write it." },
+  { icon: IconGlobe, title: "Global lens", text: "Ideas don't have borders — neither does our reporting." },
 ];
 
 export default function About() {

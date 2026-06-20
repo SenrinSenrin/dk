@@ -1,7 +1,7 @@
 import { useQuery } from "@/hooks/useData";
-import { Video, FileText, ShoppingBag, MessageSquare } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
+import { IconFileText, IconMessage, IconPlayerPlay, IconShoppingCart } from "@tabler/icons-react";
 
 export default function Dashboard() {
   const stats = useQuery({
@@ -29,10 +29,10 @@ export default function Dashboard() {
   })();
 
   const cards = [
-    { label: "Videos", value: stats.data?.videos.length ?? 0, icon: Video },
-    { label: "Articles", value: stats.data?.articles ?? 0, icon: FileText },
-    { label: "Products", value: stats.data?.products ?? 0, icon: ShoppingBag },
-    { label: "Unread messages", value: (stats.data?.messages ?? []).filter((m) => !m.is_read).length, icon: MessageSquare },
+    { label: "Videos", value: stats.data?.videos.length ?? 0, icon: IconPlayerPlay },
+    { label: "Articles", value: stats.data?.articles ?? 0, icon: IconFileText },
+    { label: "Products", value: stats.data?.products ?? 0, icon: IconShoppingCart },
+    { label: "Unread messages", value: (stats.data?.messages ?? []).filter((m) => !m.is_read).length, icon: IconMessage },
   ];
 
   return (

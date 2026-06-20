@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@/hooks/useData";
-import { Trash2, Mail, MailOpen } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { IconMail, IconMailOpened, IconTrash } from "@tabler/icons-react";
 
 export default function AdminMessages() {
   const qc = useQueryClient();
@@ -36,9 +36,9 @@ export default function AdminMessages() {
               </div>
               <div className="flex items-center gap-2">
                 <Button size="icon" variant="ghost" onClick={() => toggle.mutate({ id: m.id, is_read: !m.is_read })}>
-                  {m.is_read ? <MailOpen className="h-4 w-4" /> : <Mail className="h-4 w-4 text-primary" />}
+                  {m.is_read ? <IconMailOpened className="h-4 w-4" /> : <IconMail className="h-4 w-4 text-primary" />}
                 </Button>
-                <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(m.id); }}><Trash2 className="h-4 w-4 text-destructive" /></Button>
+                <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(m.id); }}><IconTrash className="h-4 w-4 text-destructive" /></Button>
               </div>
             </div>
             <p className="mt-4 whitespace-pre-line text-sm">{m.message}</p>

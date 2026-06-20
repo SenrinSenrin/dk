@@ -1,5 +1,5 @@
+import { IconPlayerPlay } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
 
 export interface VideoCardData {
   id: string;
@@ -33,7 +33,7 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent" />
           <div className="absolute inset-0 grid place-items-center opacity-0 transition-opacity group-hover:opacity-100">
             <div className="grid h-14 w-14 place-items-center rounded-full bg-primary/90 shadow-[0_0_30px_oklch(0.78_0.18_210/0.7)]">
-              <Play className="h-6 w-6 fill-primary-foreground text-primary-foreground" />
+              <IconPlayerPlay className="h-6 w-6 fill-primary-foreground text-primary-foreground" />
             </div>
           </div>
           {video.category && (

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Youtube, BadgeCheck } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useYouTubeChannel } from "@/hooks/useYouTubeChannel";
+import { IconArrowUpRight, IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
 
 export default function Author() {
   useDocumentTitle("The Author");
@@ -11,7 +11,7 @@ export default function Author() {
 
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-5xl px-4 py-20">
+      <section className="mx-auto max-w-7xl px-4 py-20">
         <div className="grid items-start gap-12 lg:grid-cols-[400px_1fr]">
           {/* Profile Card */}
           <motion.div
@@ -41,7 +41,7 @@ export default function Author() {
               <div className="relative px-5">
                 <div className="flex items-end justify-between">
                   <div className="-mt-12 relative">
-                    <div className="h-24 w-24 rounded-full ring-4 ring-[oklch(0.14_0.025_270)] overflow-hidden bg-muted">
+                    <div className="h-24 w-24 rounded-full overflow-hidden bg-muted">
                       {isLoading ? (
                         <div className="h-full w-full animate-pulse bg-white/10" />
                       ) : channel?.thumbnailUrl ? (
@@ -76,11 +76,14 @@ export default function Author() {
                     </div>
                   ) : (
                     <>
-                      <div className="flex items-center gap-1.5">
-                        <h2 className="font-display text-lg font-bold">
+                      <div className="flex items-center gap-1">
+                        <p className="text-lg font-bold">
                           {channel?.title ?? "Dimension Knowledge"}
-                        </h2>
-                        <BadgeCheck className="h-4.5 w-4.5 text-primary" />
+                        </p>
+                        <span className="relative inline-flex items-center justify-center">
+                          <span className="absolute h-2.5 w-2.5 rounded-full bg-white" />
+                          <IconRosetteDiscountCheckFilled size="18" className="text-blue-500 relative" />
+                        </span>
                       </div>
                       <p className="text-sm text-muted-foreground">
                         {channel?.customUrl ?? "@dimensionknowledge"}
@@ -126,7 +129,7 @@ export default function Author() {
 
                 {/* Link */}
                 <div className="mt-3 mb-5 flex items-center gap-1.5 text-sm">
-                  <ExternalLink className="h-3.5 w-3.5 text-primary" />
+                  <IconArrowUpRight className="h-3.5 w-3.5 text-primary" />
                   <a
                     href={channel?.customUrl ? `https://youtube.com/${channel.customUrl}` : "#"}
                     target="_blank"

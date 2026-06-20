@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Sparkles, Youtube, Twitter, Instagram } from "lucide-react";
+import { IconBrandInstagram, IconBrandX, IconBrandYoutube, IconSparkle2 } from '@tabler/icons-react';
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <IconSparkle2 className="h-4 w-4 text-primary-foreground" />
             </span>
             <span className="font-display text-lg font-bold">Dimension Knowledge</span>
           </div>
@@ -36,7 +36,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold">Follow</h4>
           <div className="mt-4 flex gap-2">
-            {[Youtube, Twitter, Instagram].map((Icon, i) => (
+            {[IconBrandYoutube, IconBrandX, IconBrandInstagram].map((Icon, i) => (
               <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
                 <Icon className="h-4 w-4" />
               </a>

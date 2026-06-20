@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@/hooks/useData";
 import { useState } from "react";
-import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
+import { IconPlus, IconTrash } from "@tabler/icons-react";
 
 export default function AdminProducts() {
   const qc = useQueryClient();
@@ -34,7 +34,7 @@ export default function AdminProducts() {
             <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
             <div className="mt-3 flex items-center justify-between">
               <span className="font-display font-bold text-gradient">{p.price ? `$${Number(p.price).toFixed(2)}` : ""}</span>
-              <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(p.id); }}><Trash2 className="h-4 w-4 text-destructive" /></Button>
+              <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete?")) del.mutate(p.id); }}><IconTrash className="h-4 w-4 text-destructive" /></Button>
             </div>
           </div>
         ))}
@@ -62,7 +62,7 @@ function AddProduct() {
   });
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add product</Button></DialogTrigger>
+      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><IconPlus className="mr-2 h-4 w-4" />Add product</Button></DialogTrigger>
       <DialogContent className="max-w-lg bg-popover/95 backdrop-blur-xl">
         <DialogHeader><DialogTitle>New product</DialogTitle></DialogHeader>
         <div className="grid gap-4">

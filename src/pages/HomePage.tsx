@@ -1,7 +1,6 @@
 import { useQuery } from "@/hooks/useData";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Cpu, Atom, Rocket, Brain, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -12,12 +11,13 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { fakeVideos } from "@/lib/fakeData";
+import { IconArrowRight, IconAtom, IconBrain, IconCpu, IconMail, IconRocket, IconSparkle2 } from "@tabler/icons-react";
 
 const categories = [
-  { name: "Artificial Intelligence", icon: Brain, hue: "from-primary to-secondary" },
-  { name: "Space & Cosmos", icon: Rocket, hue: "from-secondary to-accent" },
-  { name: "Physics", icon: Atom, hue: "from-accent to-primary" },
-  { name: "Future Tech", icon: Cpu, hue: "from-primary to-accent" },
+  { name: "Artificial Intelligence", icon: IconBrain, hue: "from-primary to-secondary" },
+  { name: "Space & Cosmos", icon: IconRocket, hue: "from-secondary to-accent" },
+  { name: "Physics", icon: IconAtom, hue: "from-accent to-primary" },
+  { name: "Future Tech", icon: IconCpu, hue: "from-primary to-accent" },
 ];
 
 export default function HomePage() {
@@ -71,7 +71,7 @@ export default function HomePage() {
             className="mx-auto max-w-3xl text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-xs font-medium text-muted-foreground ring-1 ring-white/10">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              <IconSparkle2 className="h-3.5 w-3.5 text-primary" />
               Welcome to the next dimension
             </span>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
@@ -85,7 +85,7 @@ export default function HomePage() {
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="bg-linear-to-r from-primary to-secondary text-primary-foreground glow-cyan hover:opacity-95">
                 <Link href="/videos">
-                  Explore videos <ArrowRight className="ml-2 h-4 w-4" />
+                  Explore videos <IconArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/5 backdrop-blur hover:bg-white/10">
@@ -191,7 +191,7 @@ function Newsletter() {
       <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-muted-foreground ring-1 ring-white/10">
-            <Mail className="h-3.5 w-3.5 text-primary" /> Newsletter
+            <IconMail className="h-3.5 w-3.5 text-primary" /> Newsletter
           </div>
           <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">
             Get new episodes <span className="text-gradient">before anyone else</span>

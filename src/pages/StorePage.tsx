@@ -1,10 +1,10 @@
 import { useQuery } from "@/hooks/useData";
 import { motion } from "framer-motion";
-import { ExternalLink, ShoppingBag } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { fakeProducts } from "@/lib/fakeData";
+import { IconArrowUpRight, IconShoppingCart } from "@tabler/icons-react";
 
 export default function StorePage() {
   useDocumentTitle("Dimension Store");
@@ -47,7 +47,7 @@ export default function StorePage() {
                   {p.image_url ? (
                     <img src={p.image_url} alt={p.name} className="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
                   ) : (
-                    <div className="grid h-full w-full place-items-center text-muted-foreground"><ShoppingBag className="h-12 w-12" /></div>
+                    <div className="grid h-full w-full place-items-center text-muted-foreground"><IconShoppingCart className="h-12 w-12" /></div>
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-5">
@@ -61,7 +61,7 @@ export default function StorePage() {
                     {p.buy_url && (
                       <a href={p.buy_url} target="_blank" rel="noreferrer"
                          className="inline-flex items-center gap-1.5 rounded-lg bg-linear-to-r from-primary to-secondary px-3 py-1.5 text-sm font-medium text-primary-foreground">
-                        Buy <ExternalLink className="h-3.5 w-3.5" />
+                        Buy <IconArrowUpRight className="h-3.5 w-3.5" />
                       </a>
                     )}
                   </div>

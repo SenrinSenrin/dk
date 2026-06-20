@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@/hooks/useData";
 import { useState } from "react";
-import { Plus, Trash2, Star, StarOff, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { extractYouTubeId, fetchYouTubeOEmbed, youtubeEmbedUrl, youtubeThumbnail } from "@/lib/youtube";
+import { IconLoader2, IconPlus, IconStar, IconStarOff, IconTrash } from "@tabler/icons-react";
 
 export default function AdminVideos() {
   const qc = useQueryClient();
@@ -74,10 +74,10 @@ export default function AdminVideos() {
                 <td className="p-4">
                   <div className="flex justify-end gap-2">
                     <Button size="icon" variant="ghost" onClick={() => toggleFeatured.mutate({ id: v.id, is_featured: !v.is_featured })}>
-                      {v.is_featured ? <Star className="h-4 w-4 fill-primary text-primary" /> : <StarOff className="h-4 w-4" />}
+                      {v.is_featured ? <IconStar className="h-4 w-4 fill-primary text-primary" /> : <IconStarOff className="h-4 w-4" />}
                     </Button>
                     <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete this video?")) del.mutate(v.id); }}>
-                      <Trash2 className="h-4 w-4 text-destructive" />
+                      <IconTrash className="h-4 w-4 text-destructive" />
                     </Button>
                   </div>
                 </td>
@@ -143,7 +143,7 @@ function AddVideoDialog() {
     <Dialog open={open} onOpenChange={(o) => { setOpen(o); if (!o) reset(); }}>
       <DialogTrigger asChild>
         <Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground">
-          <Plus className="mr-2 h-4 w-4" /> Add video
+          <IconPlus className="mr-2 h-4 w-4" /> Add video
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg bg-popover/95 backdrop-blur-xl">
@@ -154,7 +154,7 @@ function AddVideoDialog() {
             <div className="flex gap-2">
               <Input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://youtube.com/watch?v=…" className="bg-white/5" />
               <Button type="button" onClick={extract} disabled={extracting} variant="outline" className="border-white/15">
-                {extracting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Extract"}
+                {extracting ? <IconLoader2 className="h-4 w-4 animate-spin" /> : "Extract"}
               </Button>
             </div>
             {form.youtube_id && <div className="text-xs text-muted-foreground">ID: <span className="font-mono">{form.youtube_id}</span></div>}
