@@ -59,8 +59,8 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-1/3 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-secondary/20 blur-[120px] animate-pulse-glow" />
-          <div className="absolute right-1/4 top-1/2 h-[28rem] w-[28rem] rounded-full bg-primary/20 blur-[100px]" />
+          <div className="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-secondary/20 blur-[120px] animate-pulse-glow" />
+          <div className="absolute right-1/4 top-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[100px]" />
         </div>
 
         <div className="mx-auto max-w-7xl px-4 pb-24 pt-20 sm:pt-32">
@@ -83,7 +83,7 @@ export default function HomePage() {
               told the way they deserve to be told.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground glow-cyan hover:opacity-95">
+              <Button asChild size="lg" className="bg-linear-to-r from-primary to-secondary text-primary-foreground glow-cyan hover:opacity-95">
                 <Link href="/videos">
                   Explore videos <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -124,7 +124,7 @@ export default function HomePage() {
                 href={`/videos?category=${encodeURIComponent(c.name)}`}
                 className="group relative block overflow-hidden rounded-2xl glass p-6 ring-gradient transition-transform hover:-translate-y-1"
               >
-                <div className={`mb-4 inline-grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br ${c.hue} text-primary-foreground`}>
+                <div className={`mb-4 inline-grid h-12 w-12 place-items-center rounded-xl bg-linear-to-br ${c.hue} text-primary-foreground`}>
                   <c.icon className="h-5 w-5" />
                 </div>
                 <h3 className="text-base font-semibold">{c.name}</h3>
@@ -210,7 +210,7 @@ function Newsletter() {
             placeholder="you@dimension.dev"
             className="h-12 bg-white/5 ring-1 ring-white/10"
           />
-          <Button type="submit" size="lg" className="h-12 bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+          <Button type="submit" size="lg" className="h-12 bg-linear-to-r from-primary to-secondary text-primary-foreground">
             Subscribe
           </Button>
         </form>

@@ -3,11 +3,11 @@ import { Sparkles, Youtube, Twitter, Instagram } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative z-10 mt-32 border-t border-white/5 bg-gradient-to-b from-transparent to-black/40">
+    <footer className="relative z-10 mt-32 border-t border-white/5 bg-linear-to-b from-transparent to-black/40">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary">
               <Sparkles className="h-4 w-4 text-primary-foreground" />
             </span>
             <span className="font-display text-lg font-bold">Dimension Knowledge</span>

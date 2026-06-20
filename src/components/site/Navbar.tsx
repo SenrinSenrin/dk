@@ -28,7 +28,7 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 pt-4">
         <nav className="glass-strong flex items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
           <Link href="/" className="group flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary shadow-[0_0_24px_oklch(0.78_0.18_210/0.5)] transition-transform group-hover:scale-105">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary shadow-[0_0_24px_oklch(0.78_0.18_210/0.5)] transition-transform group-hover:scale-105">
               <Sparkles className="h-4 w-4 text-primary-foreground" />
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
@@ -62,7 +62,7 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <Button asChild size="sm" className="bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90">
+            <Button asChild size="sm" className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90">
               <Link href="/auth">Sign in</Link>
             </Button>
           </div>
@@ -96,7 +96,7 @@ export function Navbar() {
               <Link
                 href="/auth"
                 onClick={() => setOpen(false)}
-                className="mt-1 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 text-center text-sm font-semibold text-primary-foreground"
+                className="mt-1 rounded-lg bg-linear-to-r from-primary to-secondary px-3 py-2 text-center text-sm font-semibold text-primary-foreground"
               >
                 Sign in
               </Link>

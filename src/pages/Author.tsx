@@ -15,7 +15,7 @@ export default function Author() {
             transition={{ duration: 0.6 }}
             className="relative mx-auto"
           >
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-primary to-secondary opacity-40 blur-2xl" />
+            <div className="absolute -inset-4 rounded-full bg-linear-to-br from-primary to-secondary opacity-40 blur-2xl" />
             <div className="relative grid h-64 w-64 place-items-center overflow-hidden rounded-full ring-1 ring-white/10 glass-strong">
               <span className="font-display text-7xl font-bold text-gradient">DK</span>
             </div>

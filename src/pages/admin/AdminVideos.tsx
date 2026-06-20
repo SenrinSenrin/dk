@@ -142,7 +142,7 @@ function AddVideoDialog() {
   return (
     <Dialog open={open} onOpenChange={(o) => { setOpen(o); if (!o) reset(); }}>
       <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+        <Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground">
           <Plus className="mr-2 h-4 w-4" /> Add video
         </Button>
       </DialogTrigger>
@@ -180,7 +180,7 @@ function AddVideoDialog() {
             <input type="checkbox" checked={form.is_featured} onChange={(e) => setForm({ ...form, is_featured: e.target.checked })} />
             Feature on home page
           </label>
-          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-linear-to-r from-primary to-secondary text-primary-foreground">
             {save.isPending ? "Saving…" : "Save video"}
           </Button>
         </div>

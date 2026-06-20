@@ -50,14 +50,14 @@ export default function AuthPage() {
   return (
     <div className="relative grid min-h-screen place-items-center px-4">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/3 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-secondary/25 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/3 h-96 w-96 -translate-x-1/2 rounded-full bg-secondary/25 blur-[120px]" />
       </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md rounded-3xl glass-strong p-8 ring-gradient"
       >
         <Link href="/" className="mb-8 flex items-center justify-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary">
             <Sparkles className="h-4 w-4 text-primary-foreground" />
           </span>
           <span className="font-display text-lg font-bold">Dimension Knowledge</span>
@@ -73,7 +73,7 @@ export default function AuthPage() {
             <Label>Password</Label>
             <Input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} className="bg-white/5 ring-1 ring-white/10" />
           </div>
-          <Button type="submit" size="lg" disabled={loading} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+          <Button type="submit" size="lg" disabled={loading} className="bg-linear-to-r from-primary to-secondary text-primary-foreground">
             {loading ? "…" : mode === "signin" ? "Sign in" : "Create account"}
           </Button>
         </form>

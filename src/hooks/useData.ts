@@ -68,7 +68,7 @@ export function useQuery<T>({
   return { data, isLoading, error, refetch: fetch };
 }
 
-export function useMutation<TVariables, TData, TError = Error>({
+export function useMutation<TVariables = void, TData = void, TError = Error>({
   mutationFn,
   onSuccess,
   onError,
@@ -79,14 +79,14 @@ export function useMutation<TVariables, TData, TError = Error>({
 }) {
   const [isPending, setIsPending] = useState(false);
 
-  const mutate = async (variables: TVariables) => {
+  const mutate = async (variables?: TVariables) => {
     setIsPending(true);
     try {
-      const data = await mutationFn(variables);
-      onSuccess?.(data, variables);
+      const data = await mutationFn(variables as TVariables);
+      onSuccess?.(data, variables as TVariables);
       return data;
     } catch (error: any) {
-      onError?.(error, variables);
+      onError?.(error, variables as TVariables);
       // Suppress unhandled promise rejections if there is no onError handler
       // or if it was thrown internally, similar to React Query's default behavior
     } finally {

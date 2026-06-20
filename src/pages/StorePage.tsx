@@ -43,7 +43,7 @@ export default function StorePage() {
                 transition={{ delay: i * 0.05 }}
                 className="group flex flex-col overflow-hidden rounded-2xl glass ring-gradient"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20">
+                <div className="aspect-video overflow-hidden bg-linear-to-br from-primary/20 to-secondary/20">
                   {p.image_url ? (
                     <img src={p.image_url} alt={p.name} className="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
                   ) : (
@@ -60,7 +60,7 @@ export default function StorePage() {
                     ) : <span />}
                     {p.buy_url && (
                       <a href={p.buy_url} target="_blank" rel="noreferrer"
-                         className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-1.5 text-sm font-medium text-primary-foreground">
+                         className="inline-flex items-center gap-1.5 rounded-lg bg-linear-to-r from-primary to-secondary px-3 py-1.5 text-sm font-medium text-primary-foreground">
                         Buy <ExternalLink className="h-3.5 w-3.5" />
                       </a>
                     )}

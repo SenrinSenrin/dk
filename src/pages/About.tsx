@@ -37,7 +37,7 @@ export default function About() {
               transition={{ delay: i * 0.08 }}
               className="rounded-2xl glass p-6 ring-gradient"
             >
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary text-primary-foreground">
                 <p.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 font-display text-xl font-semibold">{p.title}</h3>

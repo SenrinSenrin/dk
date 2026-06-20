@@ -76,7 +76,7 @@ function AddArticle() {
   });
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild><Button className="bg-gradient-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add article</Button></DialogTrigger>
+      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add article</Button></DialogTrigger>
       <DialogContent className="max-w-lg bg-popover/95 backdrop-blur-xl">
         <DialogHeader><DialogTitle>New article</DialogTitle></DialogHeader>
         <div className="grid gap-4">
@@ -86,7 +86,7 @@ function AddArticle() {
           <div className="grid gap-2"><Label>Excerpt</Label><Textarea rows={2} value={f.excerpt} onChange={(e) => setF({ ...f, excerpt: e.target.value })} className="bg-white/5" /></div>
           <div className="grid gap-2"><Label>Content (markdown)</Label><Textarea rows={6} value={f.content} onChange={(e) => setF({ ...f, content: e.target.value })} className="bg-white/5" /></div>
           <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={f.is_published} onChange={(e) => setF({ ...f, is_published: e.target.checked })} /> Publish immediately</label>
-          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">{save.isPending ? "Saving…" : "Save"}</Button>
+          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-linear-to-r from-primary to-secondary text-primary-foreground">{save.isPending ? "Saving…" : "Save"}</Button>
         </div>
       </DialogContent>
     </Dialog>

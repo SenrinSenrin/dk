@@ -28,7 +28,7 @@ export default function AdminProducts() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {(data ?? []).map((p) => (
           <div key={p.id} className="rounded-2xl glass p-4">
-            {p.image_url && <img src={p.image_url} alt="" className="mb-3 aspect-[4/3] w-full rounded-lg object-cover" />}
+            {p.image_url && <img src={p.image_url} alt="" className="mb-3 aspect-video w-full rounded-lg object-cover" />}
             <div className="text-xs text-primary">{p.category}</div>
             <h3 className="font-semibold">{p.name}</h3>
             <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
@@ -62,7 +62,7 @@ function AddProduct() {
   });
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild><Button className="bg-gradient-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add product</Button></DialogTrigger>
+      <DialogTrigger asChild><Button className="bg-linear-to-r from-primary to-secondary text-primary-foreground"><Plus className="mr-2 h-4 w-4" />Add product</Button></DialogTrigger>
       <DialogContent className="max-w-lg bg-popover/95 backdrop-blur-xl">
         <DialogHeader><DialogTitle>New product</DialogTitle></DialogHeader>
         <div className="grid gap-4">
@@ -72,7 +72,7 @@ function AddProduct() {
           <Field label="Image URL" v={f.image_url} on={(v) => setF({ ...f, image_url: v })} />
           <Field label="Buy URL" v={f.buy_url} on={(v) => setF({ ...f, buy_url: v })} />
           <div className="grid gap-2"><Label>Description</Label><Textarea rows={3} value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })} className="bg-white/5" /></div>
-          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">{save.isPending ? "Saving…" : "Save"}</Button>
+          <Button onClick={() => save.mutate()} disabled={save.isPending} className="bg-linear-to-r from-primary to-secondary text-primary-foreground">{save.isPending ? "Saving…" : "Save"}</Button>
         </div>
       </DialogContent>
     </Dialog>

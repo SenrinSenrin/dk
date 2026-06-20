@@ -2,7 +2,7 @@ import { Route, Switch } from "wouter";
 
 import HomePage from "./pages/HomePage";
 import VideosPage from "./pages/VideosPage";
-import VideoDetail from "./pages/VideoDetail";
+
 import About from "./pages/About";
 import Author from "./pages/Author";
 import StorePage from "./pages/StorePage";
@@ -16,7 +16,6 @@ export default function App() {
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/videos" component={VideosPage} />
-      <Route path="/videos/:id" component={VideoDetail} />
       <Route path="/about" component={About} />
       <Route path="/author" component={Author} />
       <Route path="/store" component={StorePage} />

@@ -56,7 +56,7 @@ export default function ContactPage() {
             />
           </div>
           <Button type="submit" size="lg" disabled={sending}
-                  className="bg-gradient-to-r from-primary to-secondary text-primary-foreground glow-cyan">
+                  className="bg-linear-to-r from-primary to-secondary text-primary-foreground glow-cyan">
             {sending ? "Sending…" : <>Send message <Send className="ml-2 h-4 w-4" /></>}
           </Button>
         </motion.form>

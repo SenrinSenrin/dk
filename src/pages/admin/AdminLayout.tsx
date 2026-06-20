@@ -56,7 +56,7 @@ export default function AdminLayout() {
     <div className="relative grid min-h-screen grid-cols-1 md:grid-cols-[260px_1fr]">
       <aside className="hidden border-r border-white/5 bg-black/30 backdrop-blur md:flex md:flex-col">
         <Link href="/" className="flex items-center gap-2 px-6 py-5">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-secondary">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-linear-to-br from-primary to-secondary">
             <Sparkles className="h-4 w-4 text-primary-foreground" />
           </span>
           <span className="font-display text-base font-bold">Admin</span>
@@ -69,7 +69,7 @@ export default function AdminLayout() {
               <Link key={it.to} href={it.to}
                 className={cn(
                   "mb-1 flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                  isActive ? "bg-gradient-to-r from-primary/20 to-secondary/15 text-foreground ring-1 ring-primary/30" : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
+                  isActive ? "bg-linear-to-r from-primary/20 to-secondary/15 text-foreground ring-1 ring-primary/30" : "text-muted-foreground hover:bg-white/5 hover:text-foreground",
                 )}>
                 <it.icon className="h-4 w-4" /> {it.label}
               </Link>

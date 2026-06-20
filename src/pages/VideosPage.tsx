@@ -87,7 +87,7 @@ export default function VideosPage() {
               className="h-12 pl-10 bg-white/5 ring-1 ring-white/10"
             />
           </div>
-          <Button type="submit" size="lg" className="h-12 bg-gradient-to-r from-primary to-secondary text-primary-foreground">Search</Button>
+          <Button type="submit" size="lg" className="h-12 bg-linear-to-r from-primary to-secondary text-primary-foreground">Search</Button>
         </form>
 
         {cats && cats.length > 0 && (
