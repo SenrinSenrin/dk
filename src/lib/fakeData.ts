@@ -3,7 +3,7 @@ import { extractYouTubeId, youtubeThumbnail, fetchYouTubeVideoDetails } from "./
 const fakeVideosData = [
   {
     id: "1",
-    youtube_url: "https://youtu.be/35KDnej1hlI?si=33oSNRK72n_ESm-i",
+    youtube_url: "https://youtu.be/VSfpjU_FWog?si=8V6IbplI7gHQdMsY",
     category: "Artificial Intelligence",
     is_featured: true,
   },
@@ -37,7 +37,7 @@ export async function getFakeVideos() {
       return {
         ...v,
         youtube_id,
-        thumbnail_url: youtubeThumbnail(v.youtube_url, "max"),
+        thumbnail_url: youtubeThumbnail(v.youtube_url, "hq"),
         title: meta?.title ?? "Loading...",
         author_name: meta?.author_name ?? "Dimension Knowledge",
         author_avatar: meta?.author_avatar ?? undefined,

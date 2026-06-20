@@ -37,6 +37,12 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
               alt={video.title}
               loading="lazy"
               className="h-full w-full object-cover"
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (!img.src.includes("hqdefault")) {
+                  img.src = `https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`;
+                }
+              }}
             />
             <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
 
