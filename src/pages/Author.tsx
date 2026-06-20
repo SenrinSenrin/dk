@@ -2,7 +2,17 @@ import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useYouTubeChannel } from "@/hooks/useYouTubeChannel";
-import { IconArrowUpRight, IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
+import { 
+  IconArrowUpRight, 
+  IconRosetteDiscountCheckFilled 
+} from "@tabler/icons-react";
+import { Bluesky, LinkedIn, TwitterX } from "@monoic/icons";
+
+const SOCIAL_LINKS = [
+  { icon: LinkedIn, href: "https://www.linkedin.com/", label: "LinkedIn" },
+  { icon: TwitterX, href: "https://x.com/", label: "X" },
+  { icon: Bluesky, href: "https://bsky.app/", label: "Bluesky" },
+];
 
 export default function Author() {
   useDocumentTitle("The Author");
@@ -18,7 +28,7 @@ export default function Author() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto w-full max-w-sm"
+            className="mx-auto w-full"
           >
             <div className="overflow-hidden rounded-3xl bg-white/5 ring-1 ring-white/10 shadow-2xl shadow-primary/10">
               {/* Banner */}
@@ -36,6 +46,21 @@ export default function Author() {
                 )}
                 {/* Banner overlay gradient */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+
+                {/* Socials */}
+                <div className="absolute bottom-3 right-4 flex items-center gap-4 text-white">
+                  {SOCIAL_LINKS.map((social, i) => (
+                    <a 
+                      key={i}
+                      href={social.href}
+                      target="_blank" 
+                      aria-label={social.label as string}
+                      className="opacity-80 transition-all hover:opacity-100 drop-shadow-md active:scale-95 duration-200"
+                    >
+                      <social.icon size="20" />
+                    </a>
+                  ))}
+                </div>
               </div>
 
               <div className="relative px-5">
@@ -100,7 +125,7 @@ export default function Author() {
                       <div className="h-3.5 w-3/4 animate-pulse rounded bg-white/5" />
                     </div>
                   ) : (
-                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-4">
                       {channel?.description ?? "Exploring the future of technology, science, and ideas — one dimension at a time."}
                     </p>
                   )}
@@ -128,8 +153,7 @@ export default function Author() {
                 </div>
 
                 {/* Link */}
-                <div className="mt-3 mb-5 flex items-center gap-1.5 text-sm">
-                  <IconArrowUpRight className="h-3.5 w-3.5 text-primary" />
+                <div className="mt-3 mb-5 flex items-center text-sm">
                   <a
                     href={channel?.customUrl ? `https://youtube.com/${channel.customUrl}` : "#"}
                     target="_blank"
@@ -138,6 +162,7 @@ export default function Author() {
                   >
                     youtube.com/{channel?.customUrl?.replace("@", "") ?? "channel"}
                   </a>
+                  <IconArrowUpRight size="16" className="text-primary" />
                 </div>
               </div>
             </div>
