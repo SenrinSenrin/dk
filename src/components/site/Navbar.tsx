@@ -59,7 +59,7 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <Button asChild size="sm" className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90">
+            <Button asChild size="lg" className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90">
               <Link href="/auth">Sign in</Link>
             </Button>
           </div>
