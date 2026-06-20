@@ -22,11 +22,11 @@ export function Navbar() {
     <header
       className="sticky top-0 z-50 w-full"
     >
-      <div className="mx-auto max-w-7xl px-4 pt-4">
-        <nav className="glass-strong flex items-center justify-between rounded-xl px-4 py-5 sm:px-6">
+      <div className="mx-auto max-w-7xl pt-4">
+        <nav className="glass-strong flex items-center justify-between rounded-xl px-4 py-4 sm:px-6">
           <Link href="/" className="group flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary shadow-[0_0_24px_oklch(0.78_0.18_210/0.5)] transition-transform group-hover:scale-105">
-              <IconSparkle2 className="h-4 w-4 text-primary-foreground" />
+            <span className="h-11 w-11">
+              <img src="/logo.png"/>
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
               Dimension <span className="text-gradient">Knowledge</span>
