@@ -20,9 +20,9 @@ export default function Author() {
             transition={{ duration: 0.6 }}
             className="mx-auto w-full max-w-sm"
           >
-            <div className="overflow-hidden rounded-3xl bg-white/[0.04] ring-1 ring-white/10 shadow-2xl shadow-primary/10">
+            <div className="overflow-hidden rounded-3xl bg-white/5 ring-1 ring-white/10 shadow-2xl shadow-primary/10">
               {/* Banner */}
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
                 {isLoading ? (
                   <div className="h-full w-full animate-pulse bg-white/5" />
                 ) : channel?.bannerUrl ? (
@@ -63,7 +63,7 @@ export default function Author() {
                     href={channel?.subscribeUrl ?? "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-primary-foreground ring-1 ring-white/15 transition-all hover:bg-foreground/90"
+                    className="inline-flex items-center leading-none gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-primary-foreground ring-1 ring-white/15 transition-all hover:bg-foreground/90"
                   >
                     Subscribe
                   </a>
@@ -147,7 +147,7 @@ export default function Author() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">The Author</span>
+            <span className="font-medium text-primary">The Author</span>
             <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
               Hi, I'm Jonh the mind behind <span className="text-gradient">{channel?.title}</span>.
             </h1>
