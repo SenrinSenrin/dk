@@ -41,7 +41,7 @@ export default function AuthPage() {
         if (error) throw error;
         toast.success("Welcome back.");
       }
-      setLocation("/admin");
+      setLocation("/admin/dashbord");
     } catch (err) {
       toast.error((err as Error).message);
     } finally { setLoading(false); }

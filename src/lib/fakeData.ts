@@ -1,3 +1,4 @@
+import { supabase } from "@/integrations/supabase/client";
 import { extractYouTubeId, youtubeThumbnail, fetchYouTubeVideoDetails } from "./youtube";
 
 const fakeVideosData = [

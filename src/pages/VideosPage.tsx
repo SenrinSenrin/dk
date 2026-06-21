@@ -24,11 +24,11 @@ export default function VideosPage() {
   const { data: videos } = useQuery({
     queryKey: ["videos", category ?? null, qParam ?? null],
     queryFn: async () => {
-      let data = await getFakeVideos();
-      if (category) data = data.filter(v => v.category === category);
-      if (qParam) data = data.filter(v => v.title.toLowerCase().includes(qParam.toLowerCase()));
-      return data;
-      /*
+      // let data = await getFakeVideos();
+      // if (category) data = data.filter(v => v.category === category);
+      // if (qParam) data = data.filter(v => v.title.toLowerCase().includes(qParam.toLowerCase()));
+      // return data;
+      
       let query = supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
@@ -37,23 +37,23 @@ export default function VideosPage() {
       if (qParam) query = query.ilike("title", `%${qParam}%`);
       const { data } = await query;
       return data ?? [];
-      */
+      
     },
   });
 
   const { data: cats } = useQuery({
     queryKey: ["videos", "categories"],
     queryFn: async () => {
-      const vids = await getFakeVideos();
-      const set = new Set<string>();
-      vids.forEach((v) => v.category && set.add(v.category));
-      return Array.from(set);
-      /*
+      // const vids = await getFakeVideos();
+      // const set = new Set<string>();
+      // vids.forEach((v) => v.category && set.add(v.category));
+      // return Array.from(set);
+      
       const { data } = await supabase.from("videos").select("category");
       const set = new Set<string>();
       (data ?? []).forEach((v) => v.category && set.add(v.category));
       return Array.from(set);
-      */
+      
     },
   });
 

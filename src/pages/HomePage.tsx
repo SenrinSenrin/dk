@@ -26,9 +26,9 @@ export default function HomePage() {
   const featured = useQuery({
     queryKey: ["videos", "featured"],
     queryFn: async () => {
-      const vids = await getFakeVideos();
-      return vids.filter((v) => v.is_featured).slice(0, 3);
-      /*
+      // const vids = await getFakeVideos();
+      // return vids.filter((v) => v.is_featured).slice(0, 3);
+    
       const { data } = await supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
@@ -36,23 +36,23 @@ export default function HomePage() {
         .order("published_at", { ascending: false })
         .limit(3);
       return data ?? [];
-      */
+      
     },
   });
 
   const latest = useQuery({
     queryKey: ["videos", "latest"],
     queryFn: async () => {
-      const vids = await getFakeVideos();
-      return vids.slice(0, 8);
-      /*
+      // const vids = await getFakeVideos();
+      // return vids.slice(0, 8);
+      
       const { data } = await supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
         .order("published_at", { ascending: false })
         .limit(8);
       return data ?? [];
-      */
+      
     },
   });
 

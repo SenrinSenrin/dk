@@ -12,14 +12,14 @@ export default function StorePage() {
   const { data: products } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      return fakeProducts;
-      /*
+      // return fakeProducts;
+      
       const { data } = await supabase
         .from("products")
         .select("*").eq("is_active", true)
         .order("created_at", { ascending: false });
       return data ?? [];
-      */
+      
     },
   });
 
@@ -44,8 +44,8 @@ export default function StorePage() {
                 className="group flex flex-col overflow-hidden rounded-2xl glass ring-gradient"
               >
                 <div className="aspect-video overflow-hidden bg-linear-to-br from-primary/20 to-secondary/20">
-                  {p.image_url ? (
-                    <img src={p.image_url} alt={p.name} className="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
+                  {p.buy_url ? (
+                    <img src={p.buy_url} alt={p.name} className="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" />
                   ) : (
                     <div className="grid h-full w-full place-items-center text-muted-foreground"><IconShoppingCart className="h-12 w-12" /></div>
                   )}

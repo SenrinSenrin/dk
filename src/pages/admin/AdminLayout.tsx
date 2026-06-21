@@ -15,7 +15,7 @@ import AdminMessages from "./AdminMessages";
 import { IconFileText, IconLayoutDashboard, IconLogout, IconMessage, IconPlayerPlay, IconShoppingCart, IconSparkle2 } from "@tabler/icons-react";
 
 const items = [
-  { to: "/admin", label: "Dashboard", icon: IconLayoutDashboard, exact: true },
+  { to: "/admin/dashboard", label: "Dashboard", icon: IconLayoutDashboard, exact: true },
   { to: "/admin/videos", label: "Videos", icon: IconPlayerPlay },
   { to: "/admin/articles", label: "Articles", icon: IconFileText },
   { to: "/admin/products", label: "Store", icon: IconShoppingCart },
@@ -63,8 +63,8 @@ export default function AdminLayout() {
         </Link>
         <nav className="flex-1 px-3">
           {items.map((it) => {
-            const isExactAdmin = it.to === "/admin" && it.exact;
-            const isActive = isExactAdmin ? (location === "/admin" || location === "/admin/") : (location.startsWith(it.to) && it.to !== "/admin");
+            const isExactAdmin = it.to === "/admin/dashboard" && it.exact;
+            const isActive = isExactAdmin ? (location === "/admin/dashboard" || location === "/admin/dashboard") : (location.startsWith(it.to) && it.to !== "/admin/dashboard");
             return (
               <Link key={it.to} href={it.to}
                 className={cn(
@@ -89,8 +89,8 @@ export default function AdminLayout() {
         </header>
         <div className="md:hidden flex gap-2 overflow-x-auto border-b border-white/5 bg-black/20 px-4 py-3">
           {items.map((it) => {
-            const isExactAdmin = it.to === "/admin" && it.exact;
-            const active = isExactAdmin ? (location === "/admin" || location === "/admin/") : (location.startsWith(it.to) && it.to !== "/admin");
+            const isExactAdmin = it.to === "/admin/dashboard" && it.exact;
+            const active = isExactAdmin ? (location === "/admin/dashboard" || location === "/admin/dashboard") : (location.startsWith(it.to) && it.to !== "/admin/dashboard");
             return (
               <Link key={it.to} href={it.to} className={cn("inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs ring-1", active ? "bg-primary text-primary-foreground ring-primary" : "bg-white/5 text-muted-foreground ring-white/10")}>
                 <it.icon className="h-3.5 w-3.5" /> {it.label}
