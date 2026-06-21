@@ -8,7 +8,7 @@ export interface VideoCardData {
   thumbnail_url: string | null;
   category: string | null;
   author_name?: string;
-  author_avatar?: string;
+  embed_url?: string;
   views?: string;
   duration?: string;
   time_ago?: string;
@@ -61,8 +61,8 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
 
           {/* Video Info Area */}
           <div className="mt-3 flex gap-3 pr-6">
-            {video.author_avatar ? (
-              <img src={video.author_avatar} alt="" className="h-9 w-9 rounded-full bg-white/10 object-cover" />
+            {video.thumbnail_url ? (
+              <img src={video.thumbnail_url} alt="" className="h-9 w-9 rounded-full bg-white/10 object-cover" />
             ) : (
               <div className="h-9 w-9 rounded-full bg-white/10" />
             )}

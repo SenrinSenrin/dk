@@ -28,7 +28,7 @@ export default function AdminProducts() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {(data ?? []).map((p) => (
           <div key={p.id} className="rounded-2xl glass p-4">
-            {p.image_url && <img src={p.image_url} alt="" className="mb-3 aspect-video w-full rounded-lg object-cover" />}
+            {p.buy_url && <img src={p.buy_url} alt="" className="mb-3 aspect-video w-full rounded-lg object-cover" />}
             <div className="text-xs text-primary">{p.category}</div>
             <h3 className="font-semibold">{p.name}</h3>
             <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
