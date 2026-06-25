@@ -150,3 +150,82 @@ export async function fetchYouTubeVideoDetails(id: string, apiKey?: string): Pro
     return null;
   }
 }
+
+export interface YouTubeVideoBatchItem {
+  youtube_id: string;
+  yt_title: string;
+  yt_channel: string;
+  yt_channel_avatar: string;
+  yt_views: string;
+  yt_duration: string;
+  yt_time_ago: string;
+}
+
+/**
+ * Batch-fetch YouTube stats for multiple video IDs in TWO API calls:
+ *   1. videos.list  — views, duration, publish date, channelId
+ *   2. channels.list — channel avatar thumbnail
+ * Returns a map of youtube_id to details.
+ */
+export async function fetchYouTubeVideosBatch(
+  ids: string[],
+  apiKey: string,
+): Promise<Map<string, YouTubeVideoBatchItem>> {
+  const result = new Map<string, YouTubeVideoBatchItem>();
+  if (!ids.length || !apiKey) return result;
+
+  try {
+    // Step 1: fetch video stats
+    const videoRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos` +
+      `?part=snippet,contentDetails,statistics` +
+      `&id=${ids.join(",")}` +
+      `&maxResults=50` +
+      `&key=${apiKey}`,
+    );
+    const videoData = await videoRes.json();
+    if (!videoData.items) return result;
+
+    // Build initial entries and collect channelIds
+    const channelIdByVideoId = new Map<string, string>();
+    for (const item of videoData.items) {
+      channelIdByVideoId.set(item.id, item.snippet.channelId);
+      result.set(item.id, {
+        youtube_id: item.id,
+        yt_title: item.snippet.title,
+        yt_channel: item.snippet.channelTitle,
+        yt_channel_avatar: "",
+        yt_views: formatViews(item.statistics?.viewCount ?? "0"),
+        yt_duration: formatDuration(item.contentDetails?.duration ?? "PT0S"),
+        yt_time_ago: formatTimeAgo(item.snippet.publishedAt),
+      });
+    }
+
+    // Step 2: fetch channel avatars (one batch call for all unique channels)
+    const uniqueChannelIds = [...new Set(channelIdByVideoId.values())];
+    if (uniqueChannelIds.length > 0) {
+      const channelRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels` +
+        `?part=snippet` +
+        `&id=${uniqueChannelIds.join(",")}` +
+        `&maxResults=50` +
+        `&key=${apiKey}`,
+      );
+      const channelData = await channelRes.json();
+      if (channelData.items) {
+        const avatarByChannelId = new Map<string, string>();
+        for (const ch of channelData.items) {
+          avatarByChannelId.set(ch.id, ch.snippet.thumbnails?.default?.url ?? "");
+        }
+        for (const [videoId, channelId] of channelIdByVideoId) {
+          const entry = result.get(videoId);
+          if (entry) entry.yt_channel_avatar = avatarByChannelId.get(channelId) ?? "";
+        }
+      }
+    }
+  } catch {
+    // Silently return partial results on failure
+  }
+
+  return result;
+}

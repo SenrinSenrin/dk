@@ -7,14 +7,17 @@ export interface VideoCardData {
   title: string;
   thumbnail_url: string | null;
   category: string | null;
-  author_name?: string;
-  embed_url?: string;
-  views?: string;
-  duration?: string;
-  time_ago?: string;
+  // Populated from YouTube API at the page level
+  yt_channel?: string;
+  yt_channel_avatar?: string;
+  yt_views?: string;
+  yt_duration?: string;
+  yt_time_ago?: string;
 }
 
 export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: number }) {
+  const meta = [video.yt_views, video.yt_time_ago].filter(Boolean).join(" • ");
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,15 +31,17 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
         rel="noopener noreferrer"
         className="group block relative"
       >
-        {/* Hover Background Effect */}
+        {/* Hover glow */}
         <div className="absolute -inset-3 z-0 rounded-2xl bg-foreground/10 opacity-0 scale-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100" />
+
         <div className="relative z-10">
+          {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden rounded-xl bg-black/10 ring-1 ring-white/10">
             <img
               src={video.thumbnail_url ?? `https://img.youtube.com/vi/${video.youtube_id}/maxresdefault.jpg`}
               alt={video.title}
               loading="lazy"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
                 const img = e.currentTarget;
                 if (!img.src.includes("hqdefault")) {
@@ -46,9 +51,9 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
             />
             <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
 
-            {video.duration && (
+            {video.yt_duration && (
               <div className="absolute bottom-1.5 right-1.5 rounded bg-black/80 px-1.5 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
-                {video.duration}
+                {video.yt_duration}
               </div>
             )}
 
@@ -59,26 +64,33 @@ export function VideoCard({ video, index = 0 }: { video: VideoCardData; index?: 
             </div>
           </div>
 
-          {/* Video Info Area */}
+          {/* Info */}
           <div className="mt-3 flex gap-3 pr-6">
-            {video.thumbnail_url ? (
-              <img src={video.thumbnail_url} alt="" className="h-9 w-9 rounded-full bg-white/10 object-cover" />
+            {video.yt_channel_avatar ? (
+              <img
+                src={video.yt_channel_avatar}
+                alt={video.yt_channel ?? "channel"}
+                className="h-9 w-9 shrink-0 rounded-full bg-white/10 object-cover"
+              />
             ) : (
-              <div className="h-9 w-9 rounded-full bg-white/10" />
+              <div className="h-9 w-9 shrink-0 rounded-full bg-white/10 animate-pulse" />
             )}
 
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               <h3 className="line-clamp-2 text-[15px] font-semibold leading-snug text-foreground">
                 {video.title}
               </h3>
-
-              <p className="mt-1 text-[13px] text-muted-foreground hover:text-foreground transition-colors">
-                {video.author_name ?? "YouTube Channel"}
+              <p className="mt-1 text-[13px] text-muted-foreground truncate">
+                {video.yt_channel ?? "YouTube Channel"}
               </p>
-
-              <div className="text-[13px] text-muted-foreground">
-                {video.views ?? "0 views"} • {video.time_ago ?? "Just now"}
-              </div>
+              {meta ? (
+                <div className="text-[13px] text-muted-foreground">{meta}</div>
+              ) : (
+                <div className="mt-1 flex gap-2">
+                  <div className="h-3 w-16 rounded bg-white/10 animate-pulse" />
+                  <div className="h-3 w-20 rounded bg-white/10 animate-pulse" />
+                </div>
+              )}
             </div>
           </div>
         </div>

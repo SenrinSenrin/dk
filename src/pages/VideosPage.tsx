@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { getFakeVideos } from "@/lib/fakeData";
 import { IconSearch } from "@tabler/icons-react";
+import { fetchYouTubeVideosBatch } from "@/lib/youtube";
+
+const YT_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as string;
 
 export default function VideosPage() {
   useDocumentTitle("Videos");
@@ -24,36 +26,26 @@ export default function VideosPage() {
   const { data: videos } = useQuery({
     queryKey: ["videos", category ?? null, qParam ?? null],
     queryFn: async () => {
-      // let data = await getFakeVideos();
-      // if (category) data = data.filter(v => v.category === category);
-      // if (qParam) data = data.filter(v => v.title.toLowerCase().includes(qParam.toLowerCase()));
-      // return data;
-      
       let query = supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
-        .order("published_at", { ascending: false });
+        .order("created_at", { ascending: false });
       if (category) query = query.eq("category", category);
       if (qParam) query = query.ilike("title", `%${qParam}%`);
       const { data } = await query;
-      return data ?? [];
-      
+      const rows = data ?? [];
+      const ytMap = await fetchYouTubeVideosBatch(rows.map((v) => v.youtube_id), YT_KEY);
+      return rows.map((v) => ({ ...v, ...ytMap.get(v.youtube_id) }));
     },
   });
 
   const { data: cats } = useQuery({
     queryKey: ["videos", "categories"],
     queryFn: async () => {
-      // const vids = await getFakeVideos();
-      // const set = new Set<string>();
-      // vids.forEach((v) => v.category && set.add(v.category));
-      // return Array.from(set);
-      
       const { data } = await supabase.from("videos").select("category");
       const set = new Set<string>();
       (data ?? []).forEach((v) => v.category && set.add(v.category));
       return Array.from(set);
-      
     },
   });
 

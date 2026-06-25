@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { fakeProducts } from "@/lib/fakeData";
 import { IconArrowUpRight, IconShoppingCart } from "@tabler/icons-react";
 
 export default function StorePage() {
