@@ -102,13 +102,19 @@ export function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href="/auth"
-                onClick={() => setOpen(false)}
-                className="mt-1 rounded-lg bg-linear-to-r from-primary to-secondary px-3 py-2 text-center text-sm font-semibold text-primary-foreground"
+              <Button
+                asChild
+                size="lg"
+                className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90"
               >
-                Sign in
-              </Link>
+                <a
+                  href="https://www.youtube.com/@dimensionknowledge.k?sub_confirmation=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Subscribe
+                </a>
+              </Button>
             </div>
           </motion.div>
         )}
