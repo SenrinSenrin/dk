@@ -14,44 +14,32 @@ export type Database = {
   }
   public: {
     Tables: {
-      articles: {
+      categories: {
         Row: {
-          category: string | null
-          content: string | null
-          cover_image: string | null
           created_at: string
-          excerpt: string | null
+          description: string | null
           id: string
-          is_published: boolean
-          published_at: string | null
+          name: string
           slug: string
-          title: string
+          type: string
           updated_at: string
         }
         Insert: {
-          category?: string | null
-          content?: string | null
-          cover_image?: string | null
           created_at?: string
-          excerpt?: string | null
+          description?: string | null
           id?: string
-          is_published?: boolean
-          published_at?: string | null
+          name: string
           slug: string
-          title: string
+          type: string
           updated_at?: string
         }
         Update: {
-          category?: string | null
-          content?: string | null
-          cover_image?: string | null
           created_at?: string
-          excerpt?: string | null
+          description?: string | null
           id?: string
-          is_published?: boolean
-          published_at?: string | null
+          name?: string
           slug?: string
-          title?: string
+          type?: string
           updated_at?: string
         }
         Relationships: []

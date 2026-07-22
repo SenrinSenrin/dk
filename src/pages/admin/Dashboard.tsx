@@ -9,13 +9,13 @@ export default function Dashboard() {
     queryFn: async () => {
       const [v, a, p, m] = await Promise.all([
         supabase.from("videos").select("id,published_at,category"),
-        supabase.from("articles").select("id"),
+        supabase.from("categories").select("id"),
         supabase.from("products").select("id"),
         supabase.from("contact_messages").select("id,is_read"),
       ]);
       return {
         videos: v.data ?? [],
-        articles: a.data?.length ?? 0,
+        categories: a.data?.length ?? 0,
         products: p.data?.length ?? 0,
         messages: m.data ?? [],
       };
@@ -30,7 +30,7 @@ export default function Dashboard() {
 
   const cards = [
     { label: "Videos", value: stats.data?.videos.length ?? 0, icon: IconPlayerPlay },
-    { label: "Articles", value: stats.data?.articles ?? 0, icon: IconFileText },
+    { label: "Categories", value: stats.data?.categories ?? 0, icon: IconFileText },
     { label: "Products", value: stats.data?.products ?? 0, icon: IconShoppingCart },
     { label: "Unread messages", value: (stats.data?.messages ?? []).filter((m) => !m.is_read).length, icon: IconMessage },
   ];
