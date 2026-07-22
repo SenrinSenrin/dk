@@ -11,7 +11,9 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { getFakeVideos } from "@/lib/fakeData";
+import { fetchYouTubeVideosBatch } from "@/lib/youtube";
 import { IconArrowRight, IconAtom, IconBrain, IconCpu, IconMail, IconRocket, IconSparkle2 } from "@tabler/icons-react";
+const YT_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as string;
 
 const categories = [
   { name: "Artificial Intelligence", icon: IconBrain, hue: "from-primary to-secondary" },
@@ -35,7 +37,9 @@ export default function HomePage() {
         .eq("is_featured", true)
         .order("published_at", { ascending: false })
         .limit(3);
-      return data ?? [];
+      const rows = data ?? [];
+      const ytMap = await fetchYouTubeVideosBatch(rows.map((v) => v.youtube_id), YT_KEY);
+      return rows.map((v) => ({ ...v, ...ytMap.get(v.youtube_id) }));
       
     },
   });
@@ -51,7 +55,9 @@ export default function HomePage() {
         .select("id,youtube_id,title,thumbnail_url,category")
         .order("published_at", { ascending: false })
         .limit(8);
-      return data ?? [];
+      const rows = data ?? [];
+      const ytMap = await fetchYouTubeVideosBatch(rows.map((v) => v.youtube_id), YT_KEY);
+      return rows.map((v) => ({ ...v, ...ytMap.get(v.youtube_id) }));
       
     },
   });
@@ -97,9 +103,9 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-
       {/* FEATURED VIDEOS */}
       <section className="mx-auto max-w-7xl px-4 py-16">
+        
         <SectionHeader eyebrow="Featured" title="Hand-picked stories" />
         {featured.data && featured.data.length > 0 ? (
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
