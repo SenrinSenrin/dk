@@ -56,7 +56,7 @@ export default function About() {
             computing to neuroscience to space exploration — into stories anyone can enjoy and
             everyone can learn from.
           </p>
-        </div>
+        </div> 
       </section>
     </SiteLayout>
   );

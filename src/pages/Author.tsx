@@ -92,6 +92,7 @@ export default function Author() {
                     Subscribe
                   </a>
                 </div>
+                  {channel?.subscribeUrl}
                 {/* Name + Handle */}
                 <div className="mt-3">
                   {isLoading ? (
@@ -176,7 +177,7 @@ export default function Author() {
           >
             <span className="font-medium text-primary">The Author</span>
             <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
-              Hi, I'm Jonh the mind behind <span className="text-gradient">{channel?.title}</span>.
+              Hi, I'm <span className="text-gradient">{channel?.title}</span> the mind behind Dimension Knowledge.
             </h1>
             <div className="mt-6 space-y-4 text-muted-foreground">
               <p>
