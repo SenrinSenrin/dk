@@ -1,5 +1,18 @@
 import { Link } from "wouter";
-import { IconBrandInstagram, IconBrandX, IconBrandYoutube, IconSparkle2 } from '@tabler/icons-react';
+import { 
+  IconBrandInstagram, 
+  IconBrandX, 
+  IconBrandYoutube, 
+  IconSparkle2 
+} from '@tabler/icons-react';
+import { Facebook, TikTok } from "@monoic/icons";
+
+// Define the social links data structure
+const socialLinks = [
+  { icon: IconBrandYoutube, href: "https://www.youtube.com/@dimensionknowledge.k?sub_confirmation=1", label: "YouTube" },
+  { icon: TikTok, href: "https://www.tiktok.com/@dimensionknowledge009", label: "TikTok" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61590896164717", label: "Facebook" },
+];
 
 export function Footer() {
   return (
@@ -20,7 +33,7 @@ export function Footer() {
           <h4 className="text-sm font-semibold">Explore</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li><Link href="/videos" className="hover:text-foreground">Videos</Link></li>
-            <li><Link href="/store" className="hover:text-foreground">Store</Link></li>
+            {/* <li><Link href="/store" className="hover:text-foreground">Store</Link></li> */}
             <li><Link href="/about" className="hover:text-foreground">About</Link></li>
             <li><Link href="/author" className="hover:text-foreground">Author</Link></li>
           </ul>
@@ -35,9 +48,16 @@ export function Footer() {
         </div>
         <div>
           <h4 className="text-sm font-semibold">Follow</h4>
-          <div className="mt-4 flex gap-2">
-            {[IconBrandYoutube, IconBrandX, IconBrandInstagram].map((Icon, i) => (
-              <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 ring-1 ring-white/10 hover:bg-white/10">
+          <div className="mt-4 flex flex-wrap gap-2">
+            {socialLinks.map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 ring-1 ring-white/10 transition-colors hover:bg-white/10"
+              >
                 <Icon className="h-4 w-4" />
               </a>
             ))}

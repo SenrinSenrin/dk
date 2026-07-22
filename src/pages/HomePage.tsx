@@ -10,10 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { getFakeVideos } from "@/lib/fakeData";
 import { IconArrowRight, IconAtom, IconBrain, IconCpu, IconMail, IconRocket, IconSparkle2 } from "@tabler/icons-react";
-import { fetchYouTubeVideosBatch } from "@/lib/youtube";
-
-const YT_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as string;
 
 const categories = [
   { name: "Artificial Intelligence", icon: IconBrain, hue: "from-primary to-secondary" },
@@ -28,29 +26,33 @@ export default function HomePage() {
   const featured = useQuery({
     queryKey: ["videos", "featured"],
     queryFn: async () => {
+      // const vids = await getFakeVideos();
+      // return vids.filter((v) => v.is_featured).slice(0, 3);
+    
       const { data } = await supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
         .eq("is_featured", true)
-        .order("created_at", { ascending: false })
+        .order("published_at", { ascending: false })
         .limit(3);
-      const rows = data ?? [];
-      const ytMap = await fetchYouTubeVideosBatch(rows.map((v) => v.youtube_id), YT_KEY);
-      return rows.map((v) => ({ ...v, ...ytMap.get(v.youtube_id) }));
+      return data ?? [];
+      
     },
   });
 
   const latest = useQuery({
     queryKey: ["videos", "latest"],
     queryFn: async () => {
+      // const vids = await getFakeVideos();
+      // return vids.slice(0, 8);
+      
       const { data } = await supabase
         .from("videos")
         .select("id,youtube_id,title,thumbnail_url,category")
-        .order("created_at", { ascending: false })
+        .order("published_at", { ascending: false })
         .limit(8);
-      const rows = data ?? [];
-      const ytMap = await fetchYouTubeVideosBatch(rows.map((v) => v.youtube_id), YT_KEY);
-      return rows.map((v) => ({ ...v, ...ytMap.get(v.youtube_id) }));
+      return data ?? [];
+      
     },
   });
 
@@ -200,8 +202,8 @@ function Newsletter() {
             One thoughtful email when a new video drops. No spam — ever.
           </p>
         </div>
-        <form
-          onSubmit={(e) => { e.preventDefault(); toast.success("You're on the list."); setEmail(""); }}
+        {/* <form
+          onSubmit={(e) => { e.preventDefault(); toast.success("You're on the list."); setEmail("senrin.sim.webprograming@gmail.com"); }}
           className="flex w-full max-w-md gap-2"
         >
           <Input
@@ -213,7 +215,27 @@ function Newsletter() {
           <Button type="submit" size="lg" className="h-12 bg-linear-to-r from-primary to-secondary text-primary-foreground">
             Subscribe
           </Button>
-        </form>
+        </form> */}
+        <div className="flex w-full max-w-md gap-2 items-center">
+        <p className="text-sm text-muted-foreground font-display font-bold tracking-tight">
+          Support Me
+        </p>
+        <div className="hidden md:block">
+            <Button
+              asChild
+              size="lg"
+              className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90"
+            >
+              <a
+                href="https://www.youtube.com/@dimensionknowledge.k?sub_confirmation=1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Subscribe
+              </a>
+            </Button>
+          </div>
+        </div>
       </div>
     </motion.div>
   );

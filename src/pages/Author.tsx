@@ -92,7 +92,6 @@ export default function Author() {
                     Subscribe
                   </a>
                 </div>
-                  {channel?.subscribeUrl}
                 {/* Name + Handle */}
                 <div className="mt-3">
                   {isLoading ? (
