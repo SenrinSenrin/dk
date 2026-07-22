@@ -22,14 +22,18 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full">
       <div className="mx-auto max-w-7xl pt-4">
         <nav className="glass-strong flex items-center justify-between rounded-xl px-4 py-4 sm:px-6">
-          <Link href="/" className="group flex items-center gap-2">
-            <span className="h-11 w-11">
-              <img src="/logo.png" />
-            </span>
-            <span className="font-display text-lg font-bold tracking-tight">
-              Dimension <span className="text-gradient">Knowledge</span>
-            </span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/admin/dashboard" className="group flex items-center gap-2">
+              <span className="h-11 w-11">
+                <img src="/logo.png" />
+              </span>
+            </Link>
+            <Link href="/" className="group flex items-center gap-2">
+              <span className="font-display text-lg font-bold tracking-tight">
+                Dimension <span className="text-gradient">Knowledge</span>
+              </span>
+            </Link>
+          </div>
 
           <div className="hidden items-center gap-1 md:flex">
             {links.map((l) => {

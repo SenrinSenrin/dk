@@ -137,3 +137,37 @@ CREATE POLICY "Anyone can submit a message" ON public.contact_messages FOR INSER
 CREATE POLICY "Admins read messages" ON public.contact_messages FOR SELECT USING (public.has_role(auth.uid(), 'admin'));
 CREATE POLICY "Admins update messages" ON public.contact_messages FOR UPDATE USING (public.has_role(auth.uid(), 'admin'));
 CREATE POLICY "Admins delete messages" ON public.contact_messages FOR DELETE USING (public.has_role(auth.uid(), 'admin'));
+
+-- Categories
+CREATE TABLE public.categories (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  type TEXT DEFAULT 'general',
+  description TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Permissions
+GRANT SELECT ON public.categories TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.categories TO authenticated;
+GRANT ALL ON public.categories TO service_role;
+
+-- Row Level Security (RLS)
+ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Categories viewable by everyone" 
+  ON public.categories FOR SELECT 
+  USING (true);
+
+CREATE POLICY "Admins manage categories" 
+  ON public.categories FOR ALL 
+  USING (public.has_role(auth.uid(), 'admin')) 
+  WITH CHECK (public.has_role(auth.uid(), 'admin'));
+
+-- Trigger for updated_at
+CREATE TRIGGER categories_updated_at 
+  BEFORE UPDATE ON public.categories 
+  FOR EACH ROW 
+  EXECUTE FUNCTION public.set_updated_at();

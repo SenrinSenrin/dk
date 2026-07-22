@@ -9,7 +9,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 import Dashboard from "./Dashboard";
 import AdminVideos from "./AdminVideos";
-import AdminArticles from "./AdminArticles";
+import AdminCategories from "./AdminCategories";
 import AdminProducts from "./AdminProducts";
 import AdminMessages from "./AdminMessages";
 import { IconFileText, IconLayoutDashboard, IconLogout, IconMessage, IconPlayerPlay, IconShoppingCart, IconSparkle2 } from "@tabler/icons-react";
@@ -17,7 +17,7 @@ import { IconFileText, IconLayoutDashboard, IconLogout, IconMessage, IconPlayerP
 const items = [
   { to: "/admin/dashboard", label: "Dashboard", icon: IconLayoutDashboard, exact: true },
   { to: "/admin/videos", label: "Videos", icon: IconPlayerPlay },
-  { to: "/admin/articles", label: "Articles", icon: IconFileText },
+  { to: "/admin/categories", label: "Categories", icon: IconFileText },
   { to: "/admin/products", label: "Store", icon: IconShoppingCart },
   { to: "/admin/messages", label: "Messages", icon: IconMessage },
 ] as const;
@@ -101,7 +101,7 @@ export default function AdminLayout() {
         <main className="flex-1 p-6 lg:p-10">
           <Switch>
             <Route path="/admin/videos" component={AdminVideos} />
-            <Route path="/admin/articles" component={AdminArticles} />
+            <Route path="/admin/categories" component={AdminCategories} />
             <Route path="/admin/products" component={AdminProducts} />
             <Route path="/admin/messages" component={AdminMessages} />
             <Route path="/admin/:rest*" component={Dashboard} />

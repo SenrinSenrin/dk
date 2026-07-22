@@ -22,7 +22,7 @@ export default function AdminProducts() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div><h1 className="font-display text-3xl font-bold">Store</h1><p className="mt-1 text-sm text-muted-foreground">Products in Dimension Store.</p></div>
+        <div><h1 className="font-display text-3xl font-bold">Store Dimension</h1><p className="mt-1 text-sm text-muted-foreground">Products in Dimension Store.</p></div>
         <AddProduct />
       </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
