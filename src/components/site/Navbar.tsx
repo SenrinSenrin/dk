@@ -10,7 +10,7 @@ const links = [
   { to: "/videos", label: "Videos" },
   { to: "/about", label: "About" },
   { to: "/author", label: "Author" },
-  { to: "/store", label: "Store" },
+  // { to: "/store", label: "Store" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -19,14 +19,12 @@ export function Navbar() {
   const [pathname] = useLocation();
 
   return (
-    <header
-      className="sticky top-0 z-50 w-full"
-    >
+    <header className="sticky top-0 z-50 w-full">
       <div className="mx-auto max-w-7xl pt-4">
         <nav className="glass-strong flex items-center justify-between rounded-xl px-4 py-4 sm:px-6">
           <Link href="/" className="group flex items-center gap-2">
             <span className="h-11 w-11">
-              <img src="/logo.png"/>
+              <img src="/logo2.png" />
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
               Dimension <span className="text-gradient">Knowledge</span>
@@ -59,8 +57,18 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <Button asChild size="lg" className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90">
-              <Link href="/auth">Sign in</Link>
+            <Button
+              asChild
+              size="lg"
+              className="bg-linear-to-r from-primary to-secondary text-primary-foreground hover:opacity-90"
+            >
+              <a
+                href="https://www.youtube.com/@dimensionknowledge.k?sub_confirmation=1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Subscribe
+              </a>
             </Button>
           </div>
 
