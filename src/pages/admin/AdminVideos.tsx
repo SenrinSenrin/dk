@@ -68,6 +68,7 @@ export default function AdminVideos() {
       const { data } = await supabase
         .from("categories")
         .select("*")
+        .eq("type", "video")
         .order("name", { ascending: true });
       return (data as Category[]) ?? [];
     },
