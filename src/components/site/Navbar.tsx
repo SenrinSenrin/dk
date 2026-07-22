@@ -24,7 +24,7 @@ export function Navbar() {
         <nav className="glass-strong flex items-center justify-between rounded-xl px-4 py-4 sm:px-6">
           <Link href="/" className="group flex items-center gap-2">
             <span className="h-11 w-11">
-              <img src="/logo2.png" />
+              <img src="/logo.png" />
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
               Dimension <span className="text-gradient">Knowledge</span>
